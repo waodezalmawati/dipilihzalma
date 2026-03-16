@@ -1,0 +1,141 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: #f0ede9;
+    font-family: 'Georgia', serif;
+    overflow: hidden; /* Mencegah scroll saat flipbook aktif */
+}
+
+/* Opening Screen Tetap Sama */
+#opening {
+    position: fixed;
+    inset: 0;
+    background: #f8f6f3;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+/* Container Content */
+#content {
+    display: none;
+    height: 100vh;
+    width: 100vw;
+    perspective: 1500px; /* Memberikan efek 3D kedalaman */
+    display: none; /* Akan diubah JS */
+    align-items: center;
+    justify-content: center;
+}
+
+/* Wadah Buku */
+.book {
+    position: relative;
+    width: 90vw;
+    max-width: 400px; /* Ukuran mobile-friendly */
+    aspect-ratio: 9 / 16;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+}
+
+/* Halaman */
+.page {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    transition: transform 0.8s cubic-bezier(0.645, 0.045, 0.355, 1);
+    transform-origin: left; /* Berputar di sisi kiri seperti buku */
+    transform-style: preserve-3d;
+    cursor: pointer;
+    z-index: 1;
+}
+
+.page img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 0 5px 5px 0;
+    pointer-events: none;
+}
+
+/* Halaman yang sudah dibuka */
+.page.flipped {
+    transform: rotateY(-180deg);
+    z-index: 0;
+}
+
+/* Pengaturan Z-Index agar halaman berurutan */
+.page:nth-child(1) { z-index: 8; }
+.page:nth-child(2) { z-index: 7; }
+.page:nth-child(3) { z-index: 6; }
+.page:nth-child(4) { z-index: 5; }
+.page:nth-child(5) { z-index: 4; }
+.page:nth-child(6) { z-index: 3; }
+.page:nth-child(7) { z-index: 2; }
+.page:nth-child(8) { z-index: 1; }
+
+/* * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: #f8f6f3;
+    font-family: 'Georgia', serif;
+} */
+
+/* Opening Screen */
+/* #opening {
+    position: fixed;
+    width: 100%;
+    height: 100vh;
+    background: #f8f6f3;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 999;
+    text-align: center;
+}
+
+.opening-content h1 {
+    margin-bottom: 20px;
+    font-size: 24px;
+}
+
+.opening-content button {
+    padding: 12px 30px;
+    border: none;
+    background-color: #b8a47e;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 30px;
+    transition: 0.3s;
+}
+
+.opening-content button:hover {
+    background-color: #9c8968;
+} */
+
+/* Main Content */
+/* #content {
+    display: none;
+}
+
+.section {
+    display: flex;
+    justify-content: center;
+}
+
+.section img {
+    width: 100%;
+    max-width: 800px;
+    height: auto;
+    display: block;
+} */
