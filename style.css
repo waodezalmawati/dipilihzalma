@@ -79,6 +79,123 @@ body {
 .page:nth-child(7) { z-index: 2; }
 .page:nth-child(8) { z-index: 1; }
 
+/* Container Utama agar pas di layar HP */
+#content {
+    display: none;
+    height: 100vh;
+    width: 100vw;
+    background: #ebe8e4;
+    perspective: 2000px;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+.book {
+    position: relative;
+    /* Ukuran dinamis: 90% dari lebar layar atau maksimal mengikuti tinggi 16:9 */
+    width: 90vw;
+    height: calc(90vw * 16 / 9);
+    max-height: 90vh;
+    max-width: calc(90vh * 9 / 16);
+    box-shadow: 0 15px 35px rgba(0,0,0,0.3);
+}
+
+.page {
+    position: absolute;
+    inset: 0;
+    transition: transform 1s cubic-bezier(0.645, 0.045, 0.355, 1), filter 0.8s ease;
+    transform-origin: left;
+    transform-style: preserve-3d;
+    z-index: 10;
+    cursor: pointer;
+    background: white; /* Mencegah transparansi saat transisi */
+}
+
+.page img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+/* Efek Blur untuk halaman yang sudah dibalik */
+.page.flipped {
+    transform: rotateY(-170deg) scale(0.95); /* Sedikit miring & mengecil */
+    filter: blur(4px) brightness(0.8); /* Efek blur dan agak gelap */
+    pointer-events: none; /* Agar tidak bisa diklik lagi setelah terbuka */
+}
+
+/* Z-Index otomatis untuk banyak halaman (Gunakan JS untuk lebih aman, atau manual di sini) */
+.page:nth-child(1) { z-index: 9; }
+.page:nth-child(2) { z-index: 8; }
+.page:nth-child(3) { z-index: 7; }
+.page:nth-child(4) { z-index: 6; }
+.page:nth-child(5) { z-index: 5; }
+.page:nth-child(6) { z-index: 4; }
+.page:nth-child(7) { z-index: 3; }
+.page:nth-child(8) { z-index: 2; }
+.last-page { z-index: 1; cursor: default; }
+
+#content {
+    display: none;
+    height: 100vh;
+    width: 100vw;
+    align-items: center;
+    justify-content: center;
+    perspective: 2000px;
+    background: #d1cfcd;
+    overflow: hidden;
+}
+
+.book {
+    position: relative;
+    width: 90vw;
+    height: calc(90vw * 16 / 9);
+    max-height: 85vh;
+    max-width: calc(85vh * 9 / 16);
+    transform-style: preserve-3d;
+}
+
+.page {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    transform-origin: left;
+    transform-style: preserve-3d;
+    transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.front, .back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden; /* Sembunyikan sisi belakang saat menghadap depan */
+    box-shadow: inset -50px 0 50px rgba(0,0,0,0.1);
+}
+
+.front {
+    z-index: 2;
+}
+
+.back {
+    transform: rotateY(180deg); /* Balikkan posisi gambar belakang */
+    filter: blur(2px) brightness(0.9); /* Efek blur sisi kiri */
+}
+
+.page img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* State saat halaman terbuka */
+.page.flipped {
+    transform: rotateY(-180deg);
+}
+
 /* * {
     margin: 0;
     padding: 0;
